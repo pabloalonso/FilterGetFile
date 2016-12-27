@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="client-usage" />
+        <module name="deleteProcessInstances" />
+        <module name="FilterBDMCalls" />
+        <module name="FilterDownloadFile" />
+      </profile>
+      <profile name="Annotation profile for GetNextTaskjavaImpl" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="GetNextTaskjavaImpl" />
+      </profile>
+      <profile name="Annotation profile for GetNextL1TaskRestAPI" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="GetNextL1TaskRestAPI" />
+      </profile>
+      <profile name="Annotation profile for GetNextTaskjavaImpl (1)" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="GetNextTaskjavaImpl (1)" />
+      </profile>
+      <profile name="Annotation profile for GetNextL2TaskRestAPI" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="GetNextL2TaskRestAPI" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="client-usage" target="1.5" />
+      <module name="deleteProcessInstances" target="1.5" />
+      <module name="FilterBDMCalls" target="1.5" />
+      <module name="FilterDownloadFile" target="1.5" />
+      <module name="GetNextL1TaskRestAPI" target="1.7" />
+      <module name="GetNextL2TaskRestAPI" target="1.7" />
+      <module name="GetNextTaskjavaImpl" target="1.7" />
+      <module name="GetNextTaskjavaImpl (1)" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
