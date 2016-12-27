@@ -16,6 +16,9 @@ import java.util.HashMap;
 public class FilterGetSambaFile implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FilterGetSambaFile.class);
+    private static final String PARAM_OPERATION = "operation";
+    private static final String PARAM_FILENAME = "fileName";
+    private static final String PARAM_DOWNLOAD = "download";
 
     private FilterConfig filterConfig;
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -30,7 +33,7 @@ public class FilterGetSambaFile implements Filter {
         }
         LOGGER.info("Filtering request to "+ url + "?" + queryString);
 
-        String o = request.getParameter("operation");
+        String o = request.getParameter(PARAM_OPERATION);
         LOGGER.info("Operation is "+ o);
         if("read".equals(o)){
             getSambaFile((HttpServletRequest)request,(HttpServletResponse)response);
@@ -40,7 +43,6 @@ public class FilterGetSambaFile implements Filter {
             chain.doFilter(request, response);
             return;
         }
-
     }
 
     public void destroy() {
@@ -59,8 +61,8 @@ public class FilterGetSambaFile implements Filter {
             IOException {
         LOGGER.info("Start");
         Serializable result;
-        String fileName = request.getParameter("fileName");
-        String download = request.getParameter("download");
+        String fileName = request.getParameter(PARAM_FILENAME);
+        String download = request.getParameter(PARAM_DOWNLOAD);
 
         if (fileName == null) {
             result = new HashMap<String, String>();
