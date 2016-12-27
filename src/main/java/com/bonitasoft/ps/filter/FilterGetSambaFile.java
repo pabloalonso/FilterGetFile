@@ -30,11 +30,9 @@ public class FilterGetSambaFile implements Filter {
         }
         LOGGER.info("Filtering request to "+ url + "?" + queryString);
 
-
-        //Parametro que indicaba si era lectura o escritutra
         String o = request.getParameter("operation");
         LOGGER.info("Operation is "+ o);
-        if(o!=null && o.equals("read")){
+        if("read".equals(o)){
             getSambaFile((HttpServletRequest)request,(HttpServletResponse)response);
 
         }else{
@@ -48,6 +46,15 @@ public class FilterGetSambaFile implements Filter {
     public void destroy() {
         filterConfig = null;
     }
+
+    /**
+     * Method that will see if we have enough information to get the file,
+     * it will look for the fileName and if we have to download it.
+     * @param request HTTP Request where the parameters come
+     * @param response HTTP Response where we will put the response (file or error)
+     * @throws ServletException
+     * @throws IOException
+     */
     private void getSambaFile(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         LOGGER.info("Start");
@@ -68,11 +75,15 @@ public class FilterGetSambaFile implements Filter {
         return;
     }
 
-    private File getFile(String fileName) {
-        // TO DO
-        return new File ("C:\\Proyectos\\Binter\\example.pdf");
-    }
-
+    /**
+     * Method that will generate a file response based on the download parameter
+     * @param file File to return
+     * @param fileName Filename that will be use to name the file on download
+     * @param mimeType Mimetype of the file
+     * @param download If we need to prompup the downlaod dialog "true"
+     * @param response HTTP Response where we will put the file
+     * @throws IOException
+     */
     private void buildFileResponse(File file,String fileName, String mimeType, String download, HttpServletResponse response) throws IOException {
         response.setContentType(mimeType);
 
@@ -93,11 +104,13 @@ public class FilterGetSambaFile implements Filter {
         out.flush();
     }
 
-    private String getMimeType(String fileName) {
-        //TO DO
-        return "application/pdf";
-    }
-
+    /**
+     * Method that will generate a JSON response, usually a error one
+     * @param responseCode HTTP Error code
+     * @param result Message to return
+     * @param response HTTP Response where we will put the JSON message
+     * @throws IOException
+     */
     private void buildResponse(int responseCode, String result, HttpServletResponse response) throws IOException{
         response.setStatus(responseCode);
         response.setContentType("application/json");
@@ -105,12 +118,25 @@ public class FilterGetSambaFile implements Filter {
         PrintWriter writer=response.getWriter();
         writer.append(result);
         writer.flush();
-
-
     }
 
+    /**
+     * Method that will return a MimeType (https://www.sitepoint.com/web-foundations/mime-types-complete-list/)
+     * @param fileName Filename to extract the extension
+     * @return The given MIME type
+     */
+    private String getMimeType(String fileName) {
+        //TO DO
+        return "application/pdf";
+    }
 
-
-
-
+    /**
+     * Method to get the file from Filesystem / Samba
+     * @param fileName FileName of the file
+     * @return the file
+     */
+    private File getFile(String fileName) {
+        // TO DO
+        return new File ("C:\\Proyectos\\Binter\\example.pdf");
+    }
 }
